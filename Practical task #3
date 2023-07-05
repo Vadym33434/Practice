@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int r;
+    printf("Введіть кількість розрядів р: ");
+    scanf("%d", &r);
+
+    int count = 2;  // Початкова кількість чисел для розряду 1
+    int prev_count = 2;
+
+    for (int i = 2; i <= r; i++) {
+        int temp = count;
+        count = prev_count * 2;
+        prev_count = temp;
+    }
+
+    printf("Кількість чисел із %d розрядів: %d\n", r, prev_count);
+
+    return 0;
+}
