@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Введіть натуральне число n: ");
+    scanf("%d", &n);
+
+    int count = 0;  // Лічильник рівних дільників
+
+    for (int i = 1; i <= n; i++) {
+        int quotient = n / i;
+        int remainder = n % i;
+
+        if (quotient == remainder) {
+            count++;
+        }
+    }
+
+    printf("Кількість рівних дільників числа %d: %d\n", n, count);
+
+    return 0;
+}
