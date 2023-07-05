@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+
+int count_intersection_points(int x1, int y1, int r1, int x2, int y2, int r2) {
+    double distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+
+    if (distance > r1 + r2) {
+        return 0;  // Кола не перетинаються
+    } else if (distance == r1 + r2) {
+        return 1;  // Кола торкаються однією точкою
+    } else {
+        int min_radius = (r1 < r2) ? r1 : r2;
+        int max_radius = (r1 > r2) ? r1 : r2;
+
+        if (distance + min_radius < max_radius) {
+            return 0;  // Одне коло знаходиться всередині іншого
+        } else if (distance + min_radius == max_radius) {
+            return 1;  // Одне коло торкається внутрішньо
+        } else {
+            return 2;  // Кола перетинаються в двох точках
+        }
+    }
+}
+
+int main() {
+    int x1, y1, r1, x2, y2, r2;
+    printf("Введіть координати та радіус першого кола (x1, y1, r1): ");
+    scanf("%d %d %d", &x1, &y1, &r1);
+    printf("Введіть координати та радіус другого кола (x2, y2, r2): ");
+    scanf("%d %d %d", &x2, &y2, &r2);
+
+    int intersection_points = count_intersection_points(x1, y1, r1, x2, y2, r2);
+    printf("Кількість точок перетину: %d\n", intersection_points);
+
+    return 0;
+}
